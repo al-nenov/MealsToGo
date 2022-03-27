@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import RestaurantCard from '../components/restaurant/RestaurantCard';
 import styled from 'styled-components/native';
@@ -11,7 +11,6 @@ const SearchContainer = styled.View`
 const RestaurantsList = styled.View`
   flex: 1;
   background-color: lightblue;
-  padding: ${(props) => props.theme.space[3]};
 `;
 
 export default function RestaurantsScreen() {
@@ -22,7 +21,11 @@ export default function RestaurantsScreen() {
       </SearchContainer>
       <RestaurantsList>
         <Text>lis9t</Text>
-        <RestaurantCard />
+        <FlatList
+          data={[1, 2, 3]}
+          renderItem={() => <RestaurantCard />}
+          keyExtractor={(item) => item}
+        />
       </RestaurantsList>
     </>
   );

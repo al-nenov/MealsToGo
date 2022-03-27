@@ -1,67 +1,45 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import { Card } from 'react-native-paper';
-import { ScrollView } from 'react-native';
 
-const Title = styled.Text`
-  color: ${(props) => props.theme.colors.ui.primary};
-  font-family: ${(props) => props.theme.fonts.heading};
-  font-size: ${(props) => props.theme.fontSizes.title};
-`;
-
-const StyledCard = styled(Card)`
-  background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-
-const StyleCardCover = styled(Card.Cover)`
-  padding: ${(props) => props.theme.space[3]};
-  background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-
-const Info = styled.View`
-  padding: ${(props) => props.theme.space[3]};
-`;
-
-const Address = styled.Text`
-  font-family: ${(props) => props.theme.fonts.body};
-  font-size: ${(props) => props.theme.fontSizes.caption};
-`;
+import { RestaurantRating } from './RestaurantRating';
+import { RestaurantOpened } from './RestaurantOpened';
+import { RestaurantTempClosed } from './RestaurantTempClosed';
+import {
+  StyledCard,
+  StyleCardCover,
+  Info,
+  Address,
+  Row,
+  RowEnd,
+  Title,
+  Icon,
+} from './RestaurantCard.styles';
 
 const RestaurantCard = ({ restaurant = {} }) => {
   const {
     name = 'Some restaurant',
-    icon = '',
+    icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
     photos = ['https://picsum.photos/700'],
     address = '100 some random ',
     isOpen = true,
     rating = 4,
-    isClosedTemporarily = false,
+    isClosedTemporarily = true,
   } = restaurant;
   return (
-    <ScrollView>
-      <StyledCard elevation={15}>
-        <StyleCardCover
-          resizeMode="cover"
-          source={{ uri: photos[0] }}
-        />
-        <Info>
-          <Title>{name}</Title>
-          <Address>{address}</Address>
-        </Info>
-      </StyledCard>
-
-      <StyledCard elevation={5}>
-        <StyleCardCover
-          resizeMode="cover"
-          source={{ uri: photos[0] }}
-        />
-        <Info>
-          <Title>{name}</Title>
-          <Address>{address}</Address>
-        </Info>
-      </StyledCard>
-
-    </ScrollView>
+    <StyledCard elevation={15}>
+      <StyleCardCover resizeMode="cover" source={{ uri: photos[0] }} />
+      <Info>
+        <Title>{name}</Title>
+        <Address>{address}</Address>
+        <Row>
+          <RestaurantRating rating={rating} />
+          <RowEnd>
+            <RestaurantTempClosed tempClosed={isClosedTemporarily} />
+            <RestaurantOpened isOpen={isOpen} />
+            <Icon source={{ uri: icon }} />
+          </RowEnd>
+        </Row>
+      </Info>
+    </StyledCard>
   );
 };
 
