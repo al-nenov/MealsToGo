@@ -8,8 +8,8 @@ import {
   Oswald_400Regular,
 } from '@expo-google-fonts/oswald';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
-import RestaurantsScreen from './src/screens/restaurants';
-import styled from 'styled-components/native'
+import styled from 'styled-components/native';
+import BottomNavigation from './src/components/Nav/BottomNavigation';
 
 const SafeAreaContainer = styled(SafeAreaView)`
   flex: 1;
@@ -33,7 +33,7 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <SafeAreaContainer>
-          <RestaurantsScreen />
+          <BottomNavigation />
         </SafeAreaContainer>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
