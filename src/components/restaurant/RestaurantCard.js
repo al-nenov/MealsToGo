@@ -15,15 +15,8 @@ import {
 } from './RestaurantCard.styles';
 
 const RestaurantCard = ({ restaurant = {} }) => {
-  const {
-    name = 'Some restaurant',
-    icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
-    photos = ['https://picsum.photos/700'],
-    vicinity = '100 some random s',
-    isOpen = true,
-    rating = 4,
-    isClosedTemporarily = true,
-  } = restaurant;
+  const { name, icon, photos, vicinity, isOpen, rating, isClosedTemporarily } =
+    restaurant;
 
   return (
     <StyledCard elevation={15}>

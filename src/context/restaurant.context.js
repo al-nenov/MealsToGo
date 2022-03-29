@@ -29,12 +29,18 @@ export const RestaurantsContextProvider = ({ children }) => {
 
   useEffect(() => {
     getRestaurants();
+    return () => {
+      setError(null);
+      setIsLoading(false);
+    };
   }, []);
 
   return (
     <RestaurantsContext.Provider
       value={{
         restaurants,
+        isLoading,
+        error,
       }}
     >
       {/* <Text>{JSON.stringify(restaurants)}</Text> */}

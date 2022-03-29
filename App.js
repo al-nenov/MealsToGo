@@ -9,7 +9,7 @@ import {
 } from '@expo-google-fonts/oswald';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import styled from 'styled-components/native';
-import BottomNavigation from './src/components/Nav/BottomNavigation';
+import BottomNavigation from './src/components/nav/BottomNavigation';
 import { RestaurantsContextProvider } from './src/context/restaurant.context';
 
 const SafeAreaContainer = styled(SafeAreaView)`

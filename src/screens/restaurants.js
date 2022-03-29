@@ -4,6 +4,7 @@ import { Searchbar } from 'react-native-paper';
 import RestaurantCard from '../components/restaurant/RestaurantCard';
 import styled from 'styled-components/native';
 import { RestaurantsContext } from '../context/restaurant.context';
+import LoadingSpinner from '../components/loading/LoadingSpinner';
 
 const SearchContainer = styled.View`
   padding: 16px;
@@ -18,10 +19,12 @@ export default function RestaurantsScreen() {
   const restaurantsContext = useContext(RestaurantsContext);
   return (
     <>
+      {restaurantsContext.isLoading && <LoadingSpinner />}
       <SearchContainer>
         <Searchbar />
       </SearchContainer>
       <RestaurantsList>
+        {/* <LoadingSpinner /> */}
         <Text>d</Text>
         <FlatList
           data={restaurantsContext.restaurants}
