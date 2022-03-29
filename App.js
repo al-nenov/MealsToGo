@@ -10,6 +10,7 @@ import {
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import styled from 'styled-components/native';
 import BottomNavigation from './src/components/Nav/BottomNavigation';
+import { RestaurantsContextProvider } from './src/context/restaurant.context';
 
 const SafeAreaContainer = styled(SafeAreaView)`
   flex: 1;
@@ -33,7 +34,9 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <SafeAreaContainer>
-          <BottomNavigation />
+          <RestaurantsContextProvider>
+            <BottomNavigation />
+          </RestaurantsContextProvider>
         </SafeAreaContainer>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />

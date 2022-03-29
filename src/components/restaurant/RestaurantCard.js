@@ -19,17 +19,18 @@ const RestaurantCard = ({ restaurant = {} }) => {
     name = 'Some restaurant',
     icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
     photos = ['https://picsum.photos/700'],
-    address = '100 some random ',
+    vicinity = '100 some random s',
     isOpen = true,
     rating = 4,
     isClosedTemporarily = true,
   } = restaurant;
+
   return (
     <StyledCard elevation={15}>
       <StyleCardCover resizeMode="cover" source={{ uri: photos[0] }} />
       <Info>
         <Title>{name}</Title>
-        <Address>{address}</Address>
+        <Address>{vicinity}</Address>
         <Row>
           <RestaurantRating rating={rating} />
           <RowEnd>
