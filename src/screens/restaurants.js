@@ -1,14 +1,10 @@
 import React, { useContext } from 'react';
 import { Text, FlatList } from 'react-native';
-import { Searchbar } from 'react-native-paper';
+import { Search } from '../components/search/Search';
 import RestaurantCard from '../components/restaurant/RestaurantCard';
 import styled from 'styled-components/native';
 import { RestaurantsContext } from '../context/restaurant.context';
 import LoadingSpinner from '../components/loading/LoadingSpinner';
-
-const SearchContainer = styled.View`
-  padding: 16px;
-`;
 
 const RestaurantsList = styled.View`
   flex: 1;
@@ -20,11 +16,10 @@ export default function RestaurantsScreen() {
   return (
     <>
       {restaurantsContext.isLoading && <LoadingSpinner />}
-      <SearchContainer>
-        <Searchbar />
-      </SearchContainer>
+      <Search />
       <RestaurantsList>
         {/* <LoadingSpinner /> */}
+        {restaurantsContext.error && <Text>{restaurantsContext.error}</Text>}
         <Text>d</Text>
         <FlatList
           data={restaurantsContext.restaurants}

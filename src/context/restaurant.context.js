@@ -1,5 +1,11 @@
-import React, { useState, createContext, useEffect, useMemo } from 'react';
-import { Text } from 'react-native-paper';
+import React, {
+  useState,
+  useContext,
+  createContext,
+  useEffect,
+  useMemo,
+} from 'react';
+import { LocationContext } from './location.context';
 
 import {
   restaurantRequest,
@@ -13,9 +19,13 @@ export const RestaurantsContextProvider = ({ children }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [error, setError] = useState(null);
 
-  const getRestaurants = () => {
+  const { location } = useContext(LocationContext);
+  const locationQuery = location ? `${location.lat},${location.lng}` : '1';
+
+  useEffect(() => {
     setIsLoading(true);
-    restaurantRequest()
+    setRestaurants([]);
+    restaurantRequest(locationQuery)
       .then(transformRestaurantReq)
       .then((response) => {
         setIsLoading(false);
@@ -25,15 +35,11 @@ export const RestaurantsContextProvider = ({ children }) => {
         setIsLoading(false);
         setError(err);
       });
-  };
-
-  useEffect(() => {
-    getRestaurants();
     return () => {
       setError(null);
       setIsLoading(false);
     };
-  }, []);
+  }, [locationQuery]);
 
   return (
     <RestaurantsContext.Provider

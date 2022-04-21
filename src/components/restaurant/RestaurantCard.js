@@ -15,7 +15,7 @@ import {
 } from './RestaurantCard.styles';
 
 const RestaurantCard = ({ restaurant = {} }) => {
-  const { name, icon, photos, vicinity, isOpen, rating, isClosedTemporarily } =
+  const { name, icon, photos, address, isOpen, rating, isClosedTemporarily } =
     restaurant;
 
   return (
@@ -23,7 +23,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
       <StyleCardCover resizeMode="cover" source={{ uri: photos[0] }} />
       <Info>
         <Title>{name}</Title>
-        <Address>{vicinity}</Address>
+        <Address>{address}</Address>
         <Row>
           <RestaurantRating rating={rating} />
           <RowEnd>

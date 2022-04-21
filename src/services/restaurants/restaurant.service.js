@@ -1,6 +1,6 @@
 import { mocks, mockImages } from './mock';
 
-export const restaurantRequest = (location = '51.219448,4.402464') => {
+export const restaurantRequest = (location) => {
   return new Promise((resolve, reject) => {
     const mock = mocks[location];
     if (!mock) {
@@ -16,6 +16,7 @@ export const transformRestaurantReq = ({ results = [] }) => {
     restaurant.photos = [mockImages[randomImage]];
     return {
       ...restaurant,
+      address: restaurant.vicinity,
       isOpenNow: restaurant.opening_hours && restaurant.opening_hours.open_now,
       isClosedTemporarily: restaurant.business_status === 'CLOSED_TEMPORARILY',
     };
