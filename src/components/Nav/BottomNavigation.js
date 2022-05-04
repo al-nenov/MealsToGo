@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import RestaurantsScreen from '../../screens/restaurants';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ICON_COLORS, ICONS } from './NavIcons';
+import { RestaurantNavigator } from './RestaurantsNaviagator';
 
 function HomeScreen() {
   return (
@@ -22,9 +22,9 @@ function SettingsScreen() {
   );
 }
 
-const getIcon = (route) => ({
+const getIcon = (name) => ({
   tabBarIcon: ({ focused, color, size }) => {
-    let iconName = ICONS[route.name] || ICONS.default;
+    let iconName = ICONS[name] || ICONS.default;
 
     // You can return any component that you like here!
     return <Ionicons name={iconName} size={size} color={color} />;
@@ -37,10 +37,18 @@ const Tab = createBottomTabNavigator();
 
 const BottomNavigation = () => (
   <NavigationContainer>
-    <Tab.Navigator screenOptions={({ route }) => getIcon(route)}>
-      <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-      <Tab.Screen name="Map" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Screen
+        name="Restaurants"
+        options={getIcon('Restaurants')}
+        component={RestaurantNavigator}
+      />
+      <Tab.Screen name="Map" options={getIcon('Map')} component={HomeScreen} />
+      <Tab.Screen
+        name="Settings"
+        options={getIcon('Settings')}
+        component={SettingsScreen}
+      />
     </Tab.Navigator>
   </NavigationContainer>
 );

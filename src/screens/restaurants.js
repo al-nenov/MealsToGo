@@ -1,20 +1,21 @@
 import React, { useContext } from 'react';
-import { Text, FlatList } from 'react-native';
+import { Text, FlatList, TouchableOpacity } from 'react-native';
 import { Search } from '../components/search/Search';
 import RestaurantCard from '../components/restaurant/RestaurantCard';
 import styled from 'styled-components/native';
 import { RestaurantsContext } from '../context/restaurant.context';
 import LoadingSpinner from '../components/loading/LoadingSpinner';
+import { SafeAreaContainer } from '../components/safe-area/SafeAreaContainer';
 
 const RestaurantsList = styled.View`
   flex: 1;
   background-color: lightblue;
 `;
 
-export default function RestaurantsScreen() {
+export default function RestaurantsScreen({ navigation }) {
   const restaurantsContext = useContext(RestaurantsContext);
   return (
-    <>
+    <SafeAreaContainer>
       {restaurantsContext.isLoading && <LoadingSpinner />}
       <Search />
       <RestaurantsList>
@@ -23,10 +24,20 @@ export default function RestaurantsScreen() {
         <Text>d</Text>
         <FlatList
           data={restaurantsContext.restaurants}
-          renderItem={({ item }) => <RestaurantCard restaurant={item} />}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('RestaurantsDetails', {
+                  restaurant: item,
+                })
+              }
+            >
+              <RestaurantCard restaurant={item} />
+            </TouchableOpacity>
+          )}
           keyExtractor={(item) => item.place_id}
         />
       </RestaurantsList>
-    </>
+    </SafeAreaContainer>
   );
 }

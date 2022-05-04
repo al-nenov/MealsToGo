@@ -1,6 +1,5 @@
 import React from 'react';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
-import { SafeAreaView, StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './src/infrastructure/theme';
 import {
@@ -8,16 +7,9 @@ import {
   Oswald_400Regular,
 } from '@expo-google-fonts/oswald';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
-import styled from 'styled-components/native';
 import BottomNavigation from './src/components/nav/BottomNavigation';
 import { RestaurantsContextProvider } from './src/context/restaurant.context';
 import { LocationContextProvider } from './src/context/location.context';
-
-const SafeAreaContainer = styled(SafeAreaView)`
-  flex: 1;
-  background-color: white;
-  margin-top: ${StatusBar.currentHeight ? StatusBar.currentHeight : 0}px;
-`;
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -34,13 +26,11 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <SafeAreaContainer>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <BottomNavigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </SafeAreaContainer>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <BottomNavigation />
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
