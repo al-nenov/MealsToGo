@@ -21,7 +21,6 @@ export default function RestaurantsScreen({ navigation }) {
       <RestaurantsList>
         {/* <LoadingSpinner /> */}
         {restaurantsContext.error && <Text>{restaurantsContext.error}</Text>}
-        <Text>d</Text>
         <FlatList
           data={restaurantsContext.restaurants}
           renderItem={({ item }) => (

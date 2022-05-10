@@ -5,14 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ICON_COLORS, ICONS } from './NavIcons';
 import { RestaurantNavigator } from './RestaurantsNaviagator';
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
+import MapScreen from '../../screens/map';
 
 function SettingsScreen() {
   return (
@@ -43,7 +36,7 @@ const BottomNavigation = () => (
         options={getIcon('Restaurants')}
         component={RestaurantNavigator}
       />
-      <Tab.Screen name="Map" options={getIcon('Map')} component={HomeScreen} />
+      <Tab.Screen name="Map" options={getIcon('Map')} component={MapScreen} />
       <Tab.Screen
         name="Settings"
         options={getIcon('Settings')}
