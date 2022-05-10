@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Favorite from '../favorites/favorite';
 import { RestaurantRating } from './RestaurantRating';
 import { RestaurantOpened } from './RestaurantOpened';
 import { RestaurantTempClosed } from './RestaurantTempClosed';
@@ -20,6 +21,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
 
   return (
     <StyledCard elevation={15}>
+      <Favorite restaurant={restaurant} />
       <StyleCardCover resizeMode="cover" source={{ uri: photos[0] }} />
       <Info>
         <Title>{name}</Title>
