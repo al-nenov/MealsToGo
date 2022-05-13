@@ -7,7 +7,7 @@ const SearchContainer = styled.View`
   padding: 16px;
 `;
 
-export const Search = () => {
+export const Search = ({ isFavoritesToggled, onFavoritesToggled }) => {
   const { keyword, search } = useContext(LocationContext);
   const [searchQuery, setSearchQuery] = useState(keyword);
 
@@ -23,6 +23,8 @@ export const Search = () => {
   return (
     <SearchContainer>
       <Searchbar
+        icon={isFavoritesToggled ? 'heart' : 'heart-outline'}
+        onIconPress={onFavoritesToggled}
         onChangeText={handleChangeText}
         value={searchQuery}
         onSubmitEditing={handleSubmitEditing}

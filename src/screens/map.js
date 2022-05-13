@@ -53,7 +53,10 @@ const MapScreen = ({ navigation }) => {
                 navigation.navigate('RestaurantsDetails', { restaurant })
               }
             >
-              <RestaurantCardCompact restaurant={restaurant} />
+              <RestaurantCardCompact
+                restaurant={restaurant}
+                forceAndroidWebview
+              />
             </MapView.Callout>
           </MapView.Marker>
         ))}

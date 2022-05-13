@@ -4,9 +4,8 @@ import { WebView } from 'react-native-webview';
 import { Platform, Image } from 'react-native';
 
 const isAndroid = Platform.OS === 'android';
-const CardImage = isAndroid ? WebView : Image;
 
-const StyledCardImage = styled(CardImage)`
+const StyledCardImage = (imgEl) => styled(imgEl)`
   width: 120px;
   height: 100px;
   border-radius: 10px;
@@ -22,10 +21,12 @@ const CalloutTitle = styled.Text`
   color: black;
 `;
 
-const RestaurantCardCompact = ({ restaurant }) => {
+const RestaurantCardCompact = ({ restaurant, forceAndroidWebview = false }) => {
+  const imgEl = isAndroid && forceAndroidWebview ? WebView : Image;
+  const CardImage = StyledCardImage(imgEl);
   return (
     <CalloutCard>
-      <StyledCardImage source={{ uri: restaurant.photos[0] }} />
+      <CardImage source={{ uri: restaurant.photos[0] }} />
       <CalloutTitle>{restaurant.name}</CalloutTitle>
     </CalloutCard>
   );
